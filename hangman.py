@@ -2,7 +2,6 @@ import random
 
 INPUT_PREFIX = ' > '
 
-MAX_WORD_LENGTH = 20
 STATIC_LIVES = 6
 STATIC_WORDS = ['software', 'testing', 'whitebox', 'blackbox', 'coverage', 'mutation', 'unittesting', 'inspection',
                 'evaluation', 'pseudocode', 'statement', 'decision', 'condition', 'complexity', 'predicate']
@@ -27,8 +26,8 @@ def play_game(word):
     lives = STATIC_LIVES
 
     while lives > 0:
-        print(f'Guessing word with {n} characters: {"".join(guessed_list)}')
-        print(f'Guessed letters: {" ".join(guessed)}')
+        print(f'---\nGuessing word with {n} characters: {"".join(guessed_list)}')
+        print(f'Guessed letters: {" ".join(sorted(guessed))}')
         print(f'Lives left: {lives}')
         print(HANGMAN_PICS[STATIC_LIVES - lives])
 
@@ -73,36 +72,7 @@ def play_game(word):
 
 
 print('Welcome to Hangman - A Testers Nightmare Expansion\n'
-      'Enter "1" to put in a word for another person to guess\n'
-      'Enter "2" to guess a random word from our library')
+      'In this game, you will be guessing a word related to the software testing course')
 
-while True:
-    cmd = input(INPUT_PREFIX)
+play_game(random.choice(STATIC_WORDS))
 
-    # Check valid input type
-    if len(cmd) != 1:
-        print('Unknown command, please try again')
-
-    elif cmd == '1':
-        print('What word would you like another person to guess?')
-
-        while True:
-            word = input(INPUT_PREFIX)
-            if not word.isalpha():
-                print('The word is not properly written, it should only contain the characters a-z or A-Z')
-
-            elif len(word) > MAX_WORD_LENGTH:
-                print(f'The word is too long, Please provide a word with at most {MAX_WORD_LENGTH} characters')
-
-            else:
-                print('Word accepted')
-                break
-
-        play_game(word.lower())
-
-    elif cmd == '2':
-        word = random.choice(STATIC_WORDS)
-        play_game(word.lower())
-
-    else:
-        print('Unknown command, please try again')
