@@ -5,42 +5,14 @@ INPUT_PREFIX = ' > '
 MAX_WORD_LENGTH = 20
 STATIC_LIVES = 6
 STATIC_WORDS = ['Software', 'Testing', 'Game', 'Hangman', 'ThisIsALongWord']
-HANGMAN_PICS = ['''
-     +---+
-         |
-         |
-         |
-        ===''', '''
-     +---+
-     O   |
-         |
-         |
-        ===''', '''
-    +---+
-    O   |
-    |   |
-        |
-       ===''', '''
-    +---+
-    O   |
-   /|   |
-        |
-       ===''', '''
-    +---+
-    O   |
-   /|\  |
-        |
-       ===''', '''
-    +---+
-    O   |
-   /|\  |
-   /    |
-       ===''', '''
-    +---+
-    O   |
-   /|\  |
-   / \  |
-       ===''']
+HANGMAN_PICS = ['     +---+\n         |\n         |\n         |\n        ===',
+                '     +---+\n     O   |\n         |\n         |\n        ===',
+                '     +---+\n     O   |\n     |   |\n         |\n        ===',
+                '     +---+\n     O   |\n    /|   |\n         |\n        ===',
+                '     +---+\n     O   |\n    /|\  |\n         |\n        ===',
+                '     +---+\n     O   |\n    /|\  |\n    /    |\n        ===',
+                '     +---+\n     O   |\n    /|\  |\n    / \  |\n        ===']
+
 
 def play_game(word):
     # word list easier to index/manipulate
