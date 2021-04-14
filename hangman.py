@@ -4,7 +4,8 @@ INPUT_PREFIX = ' > '
 
 MAX_WORD_LENGTH = 20
 STATIC_LIVES = 6
-STATIC_WORDS = ['Software', 'Testing', 'Game', 'Hangman', 'ThisIsALongWord']
+STATIC_WORDS = ['software', 'testing', 'whitebox', 'blackbox', 'coverage', 'mutation', 'unittesting', 'inspection',
+                'evaluation', 'pseudocode', 'statement', 'decision', 'condition', 'complexity', 'predicate']
 HANGMAN_PICS = ['     +---+\n         |\n         |\n         |\n        ===',
                 '     +---+\n     O   |\n         |\n         |\n        ===',
                 '     +---+\n     O   |\n     |   |\n         |\n        ===',
