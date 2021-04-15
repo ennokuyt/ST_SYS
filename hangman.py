@@ -53,7 +53,7 @@ def play_game(word):
                 print('That letter was not in the word, you lost a life')
                 lives -= 1
 
-        elif re.match(f'^[a-zA-Z]{{n}}$', cmd):
+        elif re.match('^[a-zA-Z]+$', cmd):
             word_guess = cmd.lower()
             if word_guess == word:
                 print('You guessed the word, congratulations!')
@@ -81,4 +81,3 @@ print('Welcome to Hangman - A Testers Nightmare Expansion\n'
       'In this game, you will be guessing a word related to the software testing course')
 
 play_game(random.choice(STATIC_WORDS))
-
