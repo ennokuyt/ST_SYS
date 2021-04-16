@@ -146,4 +146,3 @@ print('Welcome to Hangman - A Testers Nightmare Expansion\n'
       'In this game, you will be guessing a word related to the software testing course')
 
 play_game(random.choice(STATIC_WORDS))
-
