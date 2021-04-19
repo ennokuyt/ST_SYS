@@ -16,7 +16,7 @@ HANGMAN_PICS = ['     +---+\n         |\n         |\n         |\n        ===',
 
 
 class Hangman:
-    def __init__(self, lives=STATIC_LIVES, pics=HANGMAN_PICS, words=STATIC_WORDS):
+    def __init__(self, lives=STATIC_LIVES, pics=HANGMAN_PICS, words=STATIC_WORDS, run=True):
         self.lives = lives
         self.pics = HANGMAN_PICS
         self.words = STATIC_WORDS
@@ -31,7 +31,8 @@ class Hangman:
         self.word_guessed = False
         self.last_error = 0
 
-        self.play()
+        if run:
+            self.play()
 
     def show_info(self):
         print(f'Guessing word with {self.n} characters: {"".join(self.guessed_string)}')
