@@ -87,13 +87,6 @@ class TestHangman(unittest.TestCase):
         self.assertFalse(self.h.word_guessed)
         self.assertEqual(self.h.lives, 0)
 
-    # Below this mostly test cases to force 100 percent coverage
-    def test_play_works(self):
-        pass
-
-    def test_static_words(self):
-        pass
-
 
 if __name__ == '__main__':
     # Run test
