@@ -137,3 +137,5 @@ class Hangman:
 
 if __name__ == '__main__':
     h = Hangman()
+    print('Press enter to exit')
+    input()
