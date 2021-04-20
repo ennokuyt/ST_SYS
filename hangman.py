@@ -16,11 +16,7 @@ HANGMAN_PICS = ['     +---+\n         |\n         |\n         |\n        ===',
 
 
 class Hangman:
-    def __init__(self, lives=STATIC_LIVES, pics=None, words=None):
-        if pics is None:
-            pics = HANGMAN_PICS
-        if words is None:
-            words = STATIC_WORDS
+    def __init__(self, lives=STATIC_LIVES, pics=HANGMAN_PICS, words=STATIC_WORDS):
         self.lives = lives
         self.pics = pics
         self.words = words
