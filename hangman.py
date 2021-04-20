@@ -16,7 +16,7 @@ HANGMAN_PICS = ['     +---+\n         |\n         |\n         |\n        ===',
 
 
 class Hangman:
-    def __init__(self, lives=STATIC_LIVES, pics=None, words=None, play=True):
+    def __init__(self, lives=STATIC_LIVES, pics=None, words=None):
         if pics is None:
             pics = HANGMAN_PICS
         if words is None:
@@ -33,9 +33,6 @@ class Hangman:
         self.guessed_string = ['_' for _ in range(self.n)]
 
         self.word_guessed = False
-
-        if play:
-            self.play()
 
     @staticmethod
     def show_welcome():
@@ -120,6 +117,7 @@ class Hangman:
             elif not len(cmd) == self.n:
                 self.show_bad_length()
             # This part may be commented out because it should never be reached, else we can't reach 100 percent cvrg
+            # Although I believe this could very well fail in mutation testing
             # else:
             #     print('Wrong input, please try again')
 
@@ -137,5 +135,6 @@ class Hangman:
 
 if __name__ == '__main__':
     h = Hangman()
+    h.play()
     print('Press enter to exit')
     input()
