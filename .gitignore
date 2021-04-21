@@ -1,4 +1,4 @@
-/hangman/build
-/hangman/dist
-hangman/hangman.spec
-hangman/report.yaml
+/hangman_game/build
+/hangman_game/dist
+hangman_game/hangman.spec
+hangman_game/report.yaml

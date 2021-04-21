@@ -2,7 +2,7 @@
 import unittest
 from unittest.mock import patch, MagicMock
 
-from hangman.hangman import Hangman, STATIC_LIVES
+from hangman import Hangman, STATIC_LIVES
 
 
 class TestHangman(unittest.TestCase):

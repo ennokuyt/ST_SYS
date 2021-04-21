@@ -112,6 +112,7 @@ class Hangman:
                 self.show_bad_char()
             elif not len(cmd) == self.n:
                 self.show_bad_length()
+            # TODO: Not 100 percent (branch) coverage because 'else' is never hit
             # This part may be commented out because it should never be reached, else we can't reach 100 percent cvrg
             # Although I believe this could very well fail in mutation testing
             # else:
