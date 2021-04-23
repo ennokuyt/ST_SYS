@@ -66,6 +66,6 @@ function New_State = check_state(Col_L, Col_R)
    
     
     
-    New_State = "error: no color state found"
+    New_State = "error: no color state found";
     
 end
