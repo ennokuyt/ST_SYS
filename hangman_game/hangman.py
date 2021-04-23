@@ -57,13 +57,17 @@ class Hangman:
     def show_wrong_word():
         print('That is not the correct word, continue guessing letters or try another word')
 
-    @staticmethod
-    def show_bad_char():
-        print('Wrong input character, please provide only characters a-z or A-Z')
+    def show_bad_empty(self):
+        print('Empty input, please provide only a single letter (a-z or A-Z) guess, '
+              f'or a word guess of {self.n} letters (a-z or A-Z)')
+
+    def show_bad_char(self):
+        print('Wrong input character, please provide only a single letter (a-z or A-Z) guess, '
+              f'or a word guess of {self.n} letters (a-z or A-Z)')
 
     def show_bad_length(self):
-        print(f'Wrong input length, please provide only a single letter guess, '
-              f'or a word guess of {self.n} letters')
+        print(f'Wrong input length, please provide only a single letter (a-z or A-Z) guess, '
+              f'or a word guess of {self.n} letters (a-z or A-Z)')
 
     @staticmethod
     def show_win():
@@ -108,15 +112,12 @@ class Hangman:
                 self.show_wrong_word()
                 self.lives -= 1
         else:
-            if not re.match(f'^[a-zA-Z]+$', cmd):
+            if len(cmd) == 0:
+                self.show_bad_empty()
+            elif not re.match(f'^[a-zA-Z]+$', cmd):
                 self.show_bad_char()
-            elif not len(cmd) == self.n:
+            else:
                 self.show_bad_length()
-            # TODO: Not 100 percent (branch) coverage because 'else' is never hit
-            # This part may be commented out because it should never be reached, else we can't reach 100 percent cvrg
-            # Although I believe this could very well fail in mutation testing
-            # else:
-            #     print('Wrong input, please try again')
 
     def play(self):
         self.show_welcome()

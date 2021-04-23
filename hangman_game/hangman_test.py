@@ -1,8 +1,10 @@
 # System imports
+import io
+from contextlib import redirect_stdout
 import unittest
 from unittest.mock import patch, MagicMock
 
-from hangman import Hangman, STATIC_LIVES
+from hangman_game.hangman import Hangman, STATIC_LIVES, HANGMAN_PICS
 
 
 class TestHangman(unittest.TestCase):
@@ -66,6 +68,13 @@ class TestHangman(unittest.TestCase):
         self.assertFalse(self.h.word_guessed)
         self.assertEqual(self.h.lives, STATIC_LIVES)
 
+    def test_wrong_input_empty(self):
+        self.h.show_bad_empty = MagicMock(side_effect=self.h.show_bad_empty)
+        self.h.step('')
+        self.h.show_bad_empty.assert_called_once()
+        self.assertFalse(self.h.word_guessed)
+        self.assertEqual(self.h.lives, STATIC_LIVES)
+
     def test_wrong_input_length(self):
         self.h.show_bad_length = MagicMock(side_effect=self.h.show_bad_length)
         self.h.step('wor')
@@ -88,13 +97,15 @@ class TestHangman(unittest.TestCase):
     def test_lives_pics(self):
         self.assertEqual(self.h.lives, len(self.h.pics)-1)
 
-    # TODO: check more than one special char
+    def test_correct_pics(self):
+        for i in range(STATIC_LIVES):
+            with io.StringIO() as f:
+                with redirect_stdout(f):
+                    self.h.show_info()
+                self.assertTrue(HANGMAN_PICS[i] in f.getvalue())
+            self.h.lives -= 1
 
 
 if __name__ == '__main__':
     # Run test
     unittest.main()
-
-    # Coverage testing
-
-    # Mutation testing
