@@ -12,3 +12,5 @@ Old_State = 'WW';
 New_State = 'WW';
 Mot_Pow_L = Mot_L.Speed;
 Mot_Pow_R = Mot_R.Speed;
+
+testertt = "NEWCOLOR";
