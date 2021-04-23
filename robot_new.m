@@ -14,6 +14,8 @@ mC = motor(myrobot, 'C');
 mA.Speed = 15;
 mC.Speed = 15;
 myUltrasonicSensor = sonicSensor(myrobot);
+seen_purple = 0;
+unseen = 1;
 
 while 1
   color1 = readLightIntensity(myColourSensor1, 'reflected');
@@ -27,41 +29,82 @@ while 1
   end
       
   if (color1 > red-5 && color1 < red+5) && (color2 > red-5 && color2 < red+5)
-      mA.Speed = 30;
-      mC.Speed = 30;
+      mA.Speed = 50;
+      mC.Speed = 50;
       start(mA);
       start(mC);
       
   elseif (color1 > purple-5 && color1 < purple+5) && (color2 > purple-5 && color2 < purple+5)
-      val = readDistance(myUltrasonicSensor);
-      stop(mA);
-      stop(mC);
+      mA.Speed = 21;
+      mC.Speed = 21;
+      start(mA);
+      start(mC);
+      pause(0.1);
+      seen_purple = 1;
 
 
   elseif (color1 > white-5 && color1 < white+5) && (color2 > white-5 && color2 < white+5)
-      mA.Speed = 20;
-      mC.Speed = 20;
+      if seen_purple && unseen
+          mA.Speed = -15;
+          mC.Speed = 15;
+          start(mA);
+          start(mC);
+          pause(0.8);
+          val = readDistance(myUltrasonicSensor)
+          if val > 0.5
+              mA.Speed = 15;
+              mC.Speed = -15;
+              start(mA);
+              start(mC);
+              pause(0.5);
+              mA.Speed = 20;
+              mC.Speed = 20;
+              start(mA);
+              start(mC);
+              pause(1.5);
+          else
+              mA.Speed = 15;
+              mC.Speed = -15;
+              start(mA);
+              start(mC);
+              pause(1.5);
+              mA.Speed = 20;
+              mC.Speed = 20;
+              start(mA);
+              start(mC);
+              pause(2);
+          end
+          unseen = 0;
+      end
+      mA.Speed = 21;
+      mC.Speed = 21;
       start(mA);
       start(mC);
     
-  elseif (color1 > black-5 && color1 < black+5) && (color2 > black-5 && color2 < black+5)
+  elseif (color1 < black+5) && (color2 < black+5)
+    if seen_purple == 1
+        stop(mA);
+        stop(mC);
+        break
+    end
+    
     if mA.Speed < 0
-        mA.Speed = -20;
+        mA.Speed = -21;
     else
-        mC.Speed = -20;
+        mC.Speed = -21;
     end
     start(mA);
     start(mC);
     pause(0.5);
       
-  elseif (color1 < black-5 || color1 > black+5) && (color2 > black-5 && color2 < black+5)
-    mA.Speed = 20;
-    mC.Speed = -20;
+  elseif (color1 > black+5) && (color2 > black-5 && color2 < black+5)
+    mA.Speed = 21;
+    mC.Speed = -21;
     start(mA);
     start(mC);
     pause(0.2);
       
-  elseif (color1 > black-5 && color1 < black+5) && (color2 < black-5 || color2 > black+5)
+  elseif (color1 < black+5) && (color2 > black+5)
     mA.Speed = -20;
     mC.Speed = 20;
     start(mA);
@@ -69,14 +112,14 @@ while 1
     pause(0.2);
     
   elseif (color1 > grey-5 && color1 < grey+5) && (color2 > grey-5 && color2 < grey+5)
-      mA.Speed = 10;
-      mC.Speed = 10;
+      mA.Speed = 11;
+      mC.Speed = 11;
       start(mA);
       start(mC);
       
   else
-      mA.Speed = 15;
-      mC.Speed = 15;
+      mA.Speed = 16;
+      mC.Speed = 16;
       start(mA);
       start(mC);
   end
