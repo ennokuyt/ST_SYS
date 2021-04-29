@@ -8,9 +8,10 @@ Mot_L.Speed = 20;
 Mot_R.Speed = 20;
 Vision = sonicSensor(Max_Verstappen);
 
-Old_State = 'WW';
-New_State = 'WW';
+Old_State = "START";
+New_State = "START";
 Mot_Pow_L = Mot_L.Speed;
 Mot_Pow_R = Mot_R.Speed;
 
-testertt = "NEWCOLOR";
+Old_Movement = "START";
+New_Movement = "START";
