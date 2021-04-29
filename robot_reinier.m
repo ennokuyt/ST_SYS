@@ -1,13 +1,14 @@
 % Setup variables
-STEP_TIME = 0.2
+STEP_TIME = 0.2;
 
 % Initialize states
-speed_left = 0
-speed_right = 0
-parking = false
-parked = false
+speed_left = 0;
+speed_right = 0;
+parking = false;
+parked = false;
 
 % Initialize physical object
+init;
 
 % while not parking
 
