@@ -1,3 +1,6 @@
+% Initialize physical object and color values (Set manual for new robot)
+robot_init;
+
 % Initialize states
 speed_left = 0;
 speed_right = 0;
@@ -5,15 +8,13 @@ parking = false;
 current_pos = "middle";
 prev_dist = 0;
 
-% Initialize physical object and color values (Set manual for new robot)
-robot_init;
 
 while parking == false
     
     % Get info from lightsensors and distance
     leftLightSensor = readLightIntensity(Col_L, 'reflected');
     rightLightSensor = readLightIntensity(Col_R, 'reflected');
-    dist = readDistance(myUltrasonicSensor);
+    dist = readDistance(Vision);
 
     % Parse lightsensor info to 'our' light values we use in software (e.g. 100 -> 'red')
     left_light = parse_color(leftLightSensor);
@@ -45,7 +46,7 @@ while true
     % Get info from lightsensors and distance
     leftLightSensor = readLightIntensity(Col_L, 'reflected');
     rightLightSensor = readLightIntensity(Col_R, 'reflected');
-    dist = readDistance(myUltrasonicSensor);
+    dist = readDistance(Vision);
 
     % Parse lightsensor info to 'our' light values we use in software (e.g. 100 -> 'red')
     left_light = parse_color(leftLightSensor);

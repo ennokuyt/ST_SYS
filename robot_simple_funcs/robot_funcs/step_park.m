@@ -5,13 +5,13 @@ function [speed_left, speed_right, current_pos, step_time, prev_dist_out] = ...
     if current_pos == "driving"
         %TODO
         [speed_left, speed_right, ~, step_time] = ...
-            step_drive(left_light, right_light, dist, speed_left, speed_right, parking);
+            step_drive(left_light, right_light, dist, speed_left, speed_right, true);
         current_pos = "driving";
         return
         
     elseif (left_light == "purple") && (right_light == "purple")
         [speed_left, speed_right, ~, step_time] = ...
-            step_drive(left_light, right_light, dist, speed_left, speed_right, parking);
+            step_drive(left_light, right_light, dist, speed_left, speed_right, true);
         current_pos = "middle";
         return
         

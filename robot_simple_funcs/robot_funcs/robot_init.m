@@ -8,14 +8,34 @@ Mot_R = motor(Max_Verstappen, 'C');
 Vision = sonicSensor(Max_Verstappen);
 
 % Beginning colors init
-global white
-global black
-global purple
-global grey
-global red
+global white_left
+global black_left
+global purple_left
+global grey_left
+global red_left
 
-white = 100;
-black = 15;
-purple = 54;
-grey = 40;
-red = 92;
+global white_right
+global black_right
+global purple_right
+global grey_right
+global red_right
+
+white_left = 100;
+black_left = 11;
+purple_left = 38;
+grey_left = 32;
+red_left = 92;
+
+white_right = 100;
+black_right = 11;
+purple_right = 38;
+grey_right = 32;
+red_right = 92;
+
+while true
+    leftLightSensor = readLightIntensity(Col_L, 'reflected')
+    rightLightSensor = readLightIntensity(Col_R, 'reflected')
+    pause(2);
+end
+    
+    
