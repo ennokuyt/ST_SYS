@@ -1,6 +1,3 @@
-% Setup variables
-STEP_TIME = 0.2;
-
 % Initialize states
 speed_left = 0;
 speed_right = 0;
@@ -22,7 +19,7 @@ while parking == false
     right_light = parse_color(rightLightSensor);
     
     % One step function to get new motor values, updating states
-    [speed_left, speed_right, parking] = step_drive(left_light, right_light, dist, speed_left, speed_right);
+    [speed_left, speed_right, parking, parked, step_time] = step_drive(left_light, right_light, dist, speed_left, speed_right, parking, step_time);
 
     % Stop robot in case of obstacle
     if speed_left == 0 && speed_right == 0
@@ -37,4 +34,8 @@ while parking == false
     start(Mot_L);
     start(Mot_R);
    
+    pause(0.03+step_time)
 end
+
+
+

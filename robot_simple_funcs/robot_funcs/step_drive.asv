@@ -25,6 +25,7 @@ function [speed_left, speed_right, parking, parked, step_time] = step_drive(left
     elseif left_light == "white" && right_light == "white"
         speed_left = 21;
         speed_right = 21;
+        parking = false;
         return
         
     elseif left_light == "black" && right_light == "black"
@@ -37,11 +38,13 @@ function [speed_left, speed_right, parking, parked, step_time] = step_drive(left
         elseif speed_left < 0
             speed_left = -21;
             %speed_right = speed_right (weet niet of dit bij MATLAB moet)
+            parking = false;
             step_time = 0.5;
             return
         else
             speed_right = -21;
             %speed_left = speed_left (same als hierboven)
+            parking = false;
             step_time = 0.5;
             return
         end
@@ -50,6 +53,7 @@ function [speed_left, speed_right, parking, parked, step_time] = step_drive(left
     elseif left_light ~= "black" && right_light == "black"
         speed_left = 21;
         speed_right = -21;
+        parking = false;
         step_time = 0.2;
         return
         % pause(0.2)
@@ -57,6 +61,7 @@ function [speed_left, speed_right, parking, parked, step_time] = step_drive(left
     elseif left_light == "black" && right_light ~= "black"
         speed_left = -21;
         speed_right = 21;
+        parking = false;
         step_time = 0.2;
         return
         % pause(0.2) 
@@ -64,6 +69,7 @@ function [speed_left, speed_right, parking, parked, step_time] = step_drive(left
     elseif left_light == "grey" && right_light == "grey"
         speed_left = 11;
         speed_right = 11;
+        parking = false;
         step_time = 0.2;
         return
         % pause(0.2) 
@@ -71,6 +77,7 @@ function [speed_left, speed_right, parking, parked, step_time] = step_drive(left
     else
         speed_left = 16;
         speed_right = 16;
+        parking = false;
         return 
     end
 end
