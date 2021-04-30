@@ -17,8 +17,8 @@ while parking == false
     dist = readDistance(Vision);
 
     % Parse lightsensor info to 'our' light values we use in software (e.g. 100 -> 'red')
-    left_light = parse_color(leftLightSensor);
-    right_light = parse_color(rightLightSensor);
+    left_light = parse_color(leftLightSensor, "left");
+    right_light = parse_color(rightLightSensor, "right");
     
     % One step function to get new motor values, updating states
     [speed_left, speed_right, parking, step_time] = ...
@@ -49,8 +49,8 @@ while true
     dist = readDistance(Vision);
 
     % Parse lightsensor info to 'our' light values we use in software (e.g. 100 -> 'red')
-    left_light = parse_color(leftLightSensor);
-    right_light = parse_color(rightLightSensor);
+    left_light = parse_color(leftLightSensor, "left");
+    right_light = parse_color(rightLightSensor, "right");
 
     % parking function
     [speed_left, speed_right, current_pos, step_time, prev_dist] = ...
