@@ -26,7 +26,10 @@ function color = read_color(rgb) % Gemiddelde van twee sensors
         color = 'black';
     elseif distance_red == min_dist
         color = 'red';
+    else
+        color = 
     end
+    
     return
         
 %     r_white = 260;

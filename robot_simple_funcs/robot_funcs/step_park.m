@@ -9,7 +9,7 @@ function [speed_left, speed_right, current_pos, step_time, prev_dist_out] = ...
         current_pos = "driving";
         return
         
-    elseif (left_light == "purple") && (right_light == "purple")
+    elseif (left_light == "purple") || (right_light == "purple")
         [speed_left, speed_right, ~, step_time] = ...
             step_drive(left_light, right_light, dist, speed_left, speed_right, true);
         current_pos = "middle";
@@ -17,7 +17,7 @@ function [speed_left, speed_right, current_pos, step_time, prev_dist_out] = ...
         
     else
         if (prev_dist_in > 0.5 && current_pos == "left") || current_pos == "right"
-            speed_left = 20;
+            speed_left = 20
             speed_right = 20;
             step_time = 1.5;
             current_pos = "driving";
@@ -38,7 +38,7 @@ function [speed_left, speed_right, current_pos, step_time, prev_dist_out] = ...
         elseif current_pos == "left"
             speed_left = 15;
             speed_right = -15;
-            step_time = 1.3; %Check dit
+            step_time = 0.6; %Check dit
             current_pos = "right";
         end
     end
