@@ -5,7 +5,7 @@ parking = false;
 current_pos = "middle";
 prev_dist = 0;
 
-% Initialize physical object and color values (Set manual for new robot)
+% Initialize physical object and begin colors (Set manual for new robot)
 robot_init;
 
 while parking == false
@@ -40,34 +40,10 @@ while parking == false
 end
 
 
-while true
-    
-    % Get info from lightsensors and distance
-    leftLightSensor = readLightIntensity(Col_L, 'reflected');
-    rightLightSensor = readLightIntensity(Col_R, 'reflected');
-    dist = readDistance(myUltrasonicSensor);
+while parked == false
 
-    % Parse lightsensor info to 'our' light values we use in software (e.g. 100 -> 'red')
-    left_light = parse_color(leftLightSensor);
-    right_light = parse_color(rightLightSensor);
-
-    % parking function
     [speed_left, speed_right, current_pos, step_time, prev_dist] = ...
         step_park(left_light, right_light, dist, prev_dist, speed_left, speed_right, current_pos);
     
-    % Stop robot in case of obstacle or when fully parked
-    if speed_left == 0 && speed_right == 0
-        stop(Mot_L);
-        stop(Mot_R);
-        break
-    end
-    
-    % Update motors and start them
-    Mot_L.Speed = speed_left;
-    Mot_R.Speed = speed_right;
-    start(Mot_L);
-    start(Mot_R);
-   
-    pause(0.03+step_time)
-    
+
 end

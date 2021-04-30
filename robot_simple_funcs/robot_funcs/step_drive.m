@@ -1,8 +1,7 @@
-function [speed_left, speed_right, parking, parked, step_time] = step_drive(left_light, right_light, dist, speed_left, speed_right, parking, step_time)
+function [speed_left, speed_right, parking_out, step_time] = step_drive(left_light, right_light, dist, speed_left, speed_right, parking_in)
     
     step_time = 0;
-    parked = false;
-    parking = false;
+    parking_out = parking_in;
     
     if dist < 0.10
         speed_left = 0;
@@ -19,7 +18,7 @@ function [speed_left, speed_right, parking, parked, step_time] = step_drive(left
         speed_left = 21;
         speed_right = 21;
         step_time = 0.1;
-        parking = true;
+        parking_out = true;
         return
         
     elseif left_light == "white" && right_light == "white"
@@ -28,10 +27,9 @@ function [speed_left, speed_right, parking, parked, step_time] = step_drive(left
         return
         
     elseif left_light == "black" && right_light == "black"
-        if parking == true
+        if parking_in == true
             speed_left = 0;
             speed_right = 0;
-            parked = true;
             return
             
         elseif speed_left < 0
