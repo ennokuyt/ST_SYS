@@ -7,6 +7,7 @@ speed_right = 0;
 parking = false;
 current_pos = "middle";
 prev_dist = 0;
+go_to_second = true;
 
 
 while parking == false
@@ -17,8 +18,8 @@ while parking == false
     dist = readDistance(Vision);
 
     % Parse lightsensor info to 'our' light values we use in software (e.g. 100 -> 'red')
-    left_light = read_color(leftLightSensor);
-    right_light = read_color(rightLightSensor);
+    left_light = read_color_left(leftLightSensor);
+    right_light = read_color_right(rightLightSensor);
     
     % One step function to get new motor values, updating states
     [speed_left, speed_right, parking, step_time] = ...
@@ -28,6 +29,7 @@ while parking == false
     if speed_left == 0 && speed_right == 0
         stop(Mot_L);
         stop(Mot_R);
+        go_to_second = false;
         break
     end
     
@@ -37,11 +39,11 @@ while parking == false
     start(Mot_L);
     start(Mot_R);
    
-    pause(0.03+step_time)
+    pause(0.01+step_time)
 end
 
 
-while true
+while go_to_second == true
     
     % Get info from lightsensors and distance
     leftLightSensor = readColorRGB(Col_L);
@@ -49,8 +51,8 @@ while true
     dist = readDistance(Vision);
 
     % Parse lightsensor info to 'our' light values we use in software (e.g. 100 -> 'red')
-    left_light = read_color(leftLightSensor);
-    right_light = read_color(rightLightSensor);
+    left_light = read_color_left(leftLightSensor);
+    right_light = read_color_right(rightLightSensor);
 
     % parking function
     [speed_left, speed_right, current_pos, step_time, prev_dist] = ...

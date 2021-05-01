@@ -33,31 +33,51 @@ function [speed_left, speed_right, parking_out, step_time] = step_drive(left_lig
             return
             
         elseif speed_left < 0
-            speed_left = -21;
+            speed_left = -24;
+            speed_right = 24;
             %speed_right = speed_right (weet niet of dit bij MATLAB moet)
-            step_time = 0.5;
+            step_time = 0.7;
             return
         else
-            speed_right = -21;
+            speed_right = 24;
+            speed_left = -24;
             %speed_left = speed_left (same als hierboven)
-            step_time = 0.5;
+            step_time = 0.7;
             return
         end
         % pause(0.5)
 
     elseif left_light ~= "black" && right_light == "black"
-        speed_left = 21;
-        speed_right = -21;
-        step_time = 0.2;
-        return
-        % pause(0.2)
+        
+        if left_light == "grey"
+            speed_left = 11;
+            speed_right = -11;
+            step_time = 0.25;
+            return
+            % pause(0.2)
+        else
+            speed_left = 23;
+            speed_right = -21;
+            step_time = 0.2;
+            return
+            % pause(0.2)
+        end
         
     elseif left_light == "black" && right_light ~= "black"
-        speed_left = -21;
-        speed_right = 21;
-        step_time = 0.2;
-        return
-        % pause(0.2) 
+        
+        if right_light == "grey"
+            speed_left = 11;
+            speed_right = -11;
+            step_time = 0.25;
+            return
+            % pause(0.2)
+        else
+            speed_left = -21;
+            speed_right = 23;
+            step_time = 0.2;
+            return
+            % pause(0.2) 
+        end
         
     elseif left_light == "grey" && right_light == "grey"
         speed_left = 11;
